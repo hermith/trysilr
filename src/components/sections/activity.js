@@ -49,6 +49,7 @@ const Activity = ({ data, search }) => {
       <Section
         key={activity[0].aktivitetsdeltagelse} room={activity}
         header={<Subheading activity={activity[0].aktivitetsdeltagelse} />}
+        search={searchValue}
       />,
     );
   });

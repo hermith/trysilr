@@ -18,3 +18,9 @@ export default (array, search) => {
   array.unshift(...removed);
   return hasSorted;
 };
+
+export const findAndPutFirst = (array, name) => {
+  const removed = _.remove(array, person => `${person.fornavn} ${person.etternavn}`.toLowerCase().includes(name));
+  array.unshift(...removed);
+  return !!removed;
+};

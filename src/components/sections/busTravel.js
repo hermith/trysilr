@@ -45,7 +45,11 @@ const BusTravel = ({ data, search }) => {
 
   const busses = [];
   byBus.forEach((bus) => {
-    busses.push(<Section key={bus[0].transport} room={bus} header={<Subheading bus={bus[0].transport} />} />);
+    busses.push(<Section
+      key={bus[0].transport} room={bus}
+      header={<Subheading bus={bus[0].transport} />}
+      search={searchValue}
+    />);
   });
 
   return (

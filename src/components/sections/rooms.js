@@ -30,7 +30,11 @@ const Rooms = ({ data, search }) => {
 
   const allRooms = [];
   byRoom.forEach((room) => {
-    allRooms.push(<Section key={room[0].rom.navn} room={room} header={<Subheading roomInfo={room[0].rom} />} />);
+    allRooms.push(<Section
+      key={room[0].rom.navn} room={room}
+      header={<Subheading roomInfo={room[0].rom} />}
+      search={searchValue}
+    />);
   });
 
   return (
