@@ -10,7 +10,7 @@ const Section = ({ room, header }) => {
   });
 
   return (
-    <Col xs={6} md={3}>
+    <Col xs={6} sm={4} md={3} lg={2}>
       <Panel bsStyle={room.active ? 'primary' : 'default'} header={header}>
         {people}
       </Panel>

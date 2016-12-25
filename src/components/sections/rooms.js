@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
-import { Col, Alert } from 'react-bootstrap';
+import Masonry from 'react-masonry-component';
+import { Row, Alert } from 'react-bootstrap';
 import _ from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Section from '../section';
@@ -14,12 +15,16 @@ Subheading.propTypes = {
 
 const Rooms = ({ data, search }) => {
   const searchValue = search.toLowerCase();
-  const byRoom = _.values(_.groupBy(data, 'rom.navn'));
+  const byRoom = _.values(_.groupBy(data, 'rom.navn', 'rom.lokasjon'));
   let searchWarning;
 
   if (searchValue) {
     if (!filterToStart(byRoom, searchValue)) {
-      searchWarning = <Col xs={12}> <Alert bsStyle="warning">Fant ingen med navn {search}</Alert></Col>;
+      searchWarning = (
+        <Row className="warningHolder">
+          <Alert bsStyle="warning">Fant ingen med navn {search}</Alert>
+        </Row>
+      );
     }
   }
 
@@ -29,14 +34,19 @@ const Rooms = ({ data, search }) => {
   });
 
   return (
-    <ReactCSSTransitionGroup
-      transitionName="fade"
-      transitionEnterTimeout={300}
-      transitionLeaveTimeout={100}
-    >
-      {searchWarning}
-      {allRooms}
-    </ReactCSSTransitionGroup>
+    <div>
+      <ReactCSSTransitionGroup
+        transitionName="fade"
+        transitionEnterTimeout={300}
+        transitionLeaveTimeout={100}
+      >
+        {searchWarning}
+      </ReactCSSTransitionGroup>
+
+      <Masonry>
+        {allRooms}
+      </Masonry>
+    </div>
   );
 };
 

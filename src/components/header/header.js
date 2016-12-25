@@ -19,10 +19,10 @@ const Header = ({ onClicks, onSearch, state: { activeButton } }) => (
           {' '}
           <ButtonGroup>
             <Button active={activeButton === 0} onClick={() => onClicks(0)}>
-              <Glyphicon glyph="home" /> Romfordeling
+              <Glyphicon glyph="home" /> Rom
             </Button>
             <Button active={activeButton === 1} onClick={() => onClicks(1)}>
-              <Glyphicon glyph="road" /> Busstur
+              <Glyphicon glyph="road" /> Buss
             </Button>
             <Button active={activeButton === 2} onClick={() => onClicks(2)}>
               <Glyphicon glyph="thumbs-up" /> Aktivitet

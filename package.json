@@ -24,6 +24,8 @@
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.1",
     "react-loading": "0.0.9",
+    "react-masonry-component": "^4.4.0",
+    "throttle-debounce": "^1.0.1",
     "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {

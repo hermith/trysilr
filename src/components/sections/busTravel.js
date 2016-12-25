@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
-import { Col, Alert } from 'react-bootstrap';
+import { Row, Alert } from 'react-bootstrap';
+import Masonry from 'react-masonry-component';
 import _ from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Section from '../section';
@@ -34,7 +35,11 @@ const BusTravel = ({ data, search }) => {
 
   if (searchValue) {
     if (!filterToStart(byBus, searchValue)) {
-      searchWarning = <Col xs={12}> <Alert bsStyle="warning">Fant ingen med navn {search}</Alert></Col>;
+      searchWarning = (
+        <Row className="warningHolder">
+          <Alert bsStyle="warning">Fant ingen med navn {search}</Alert>
+        </Row>
+      );
     }
   }
 
@@ -44,14 +49,18 @@ const BusTravel = ({ data, search }) => {
   });
 
   return (
-    <ReactCSSTransitionGroup
-      transitionName="fade"
-      transitionEnterTimeout={300}
-      transitionLeaveTimeout={100}
-    >
-      {searchWarning}
-      {busses}
-    </ReactCSSTransitionGroup>
+    <div>
+      <ReactCSSTransitionGroup
+        transitionName="fade"
+        transitionEnterTimeout={300}
+        transitionLeaveTimeout={100}
+      >
+        {searchWarning}
+      </ReactCSSTransitionGroup>
+      <Masonry>
+        {busses}
+      </Masonry>
+    </div>
   );
 };
 

@@ -15,8 +15,20 @@ body {
   margin: auto;
 }
 
-.person {
-  padding: 2px;
+.panel-body div {
+  padding: 2px 15px;
+}
+
+.warningHolder {
+  margin: 0 15px;
+}
+
+.panel-body div:nth-child(even) {
+  background-color: #393838;
+}
+
+.panel-body {
+  padding: 0;
 }
 
 @media screen and (max-width: 767px) {

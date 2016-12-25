@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Col, Alert } from 'react-bootstrap';
 import 'whatwg-fetch';
+import { debounce } from 'throttle-debounce';
+import { Col, Alert } from 'react-bootstrap';
 import Rooms from './sections/rooms';
 import Bus from './sections/busTravel';
 import Activity from './sections/activity';
@@ -8,6 +9,7 @@ import Header from './header/header';
 import Spinner from './utils/spinner';
 
 class Trysilr extends Component {
+
   constructor() {
     super();
     this.state = {
@@ -20,8 +22,9 @@ class Trysilr extends Component {
 
     this.headerButtonsClicked = this.headerButtonsClicked.bind(this);
     this.updateState = this.updateState.bind(this);
+    this.debouncedUpdateState = debounce(200, this.updateState);
 
-    fetch('/paameldinger.json')
+    fetch('/trysilr/paameldinger.json')
     .then(response => response.json())
     .then((json) => {
       this.updateState('data', json);
@@ -69,7 +72,7 @@ class Trysilr extends Component {
 
     return (
       <div>
-        <Header state={this.state} onClicks={this.headerButtonsClicked} onSearch={this.updateState} />
+        <Header state={this.state} onClicks={this.headerButtonsClicked} onSearch={this.debouncedUpdateState} />
         {innhold}
       </div>
     );
