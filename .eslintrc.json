@@ -9,6 +9,7 @@
     "browser": true
   },
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+    "max-len": [2, 120, 4]
   }
 }

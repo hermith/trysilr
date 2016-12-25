@@ -1,22 +1,26 @@
 html {
-    font-family: sans-serif;
-    font-size: 12px;
+  font-family: sans-serif;
+  font-size: 12px;
 }
 
 body {
-    width: 100%;
-    min-height: 100%;
-    padding: 0;
-    margin: 0;
-    background-color: aquamarine;
+  width: 100%;
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.centerBlock {
+  display: table;
+  margin: auto;
 }
 
 .person {
-    padding: 2px;
+  padding: 2px;
 }
 
 @media screen and (max-width: 767px) {
-    .searchWhois {
-        margin-bottom: 4px;
-    }
+  .searchWhois {
+    margin-bottom: 4px;
+  }
 }

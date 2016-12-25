@@ -1,15 +1,9 @@
 import React, { PropTypes } from 'react';
 import { Panel, Col } from 'react-bootstrap';
-import Person from './person';
-import { RoomInfoProp, PersonProp } from '../objectDefinitions';
+import Person from './common/person';
+import { PersonProp } from '../objectDefinitions';
 
-const Subheading = ({ roomInfo }) => <span>{roomInfo.navn} ({roomInfo.lokasjon})</span>;
-
-Subheading.propTypes = {
-  roomInfo: RoomInfoProp,
-};
-
-const Section = ({ room }) => {
+const Section = ({ room, header }) => {
   const people = [];
   room.forEach((person) => {
     people.push(<Person key={person.fornavn + person.etternavn} person={person} />);
@@ -17,7 +11,7 @@ const Section = ({ room }) => {
 
   return (
     <Col xs={6} md={3}>
-      <Panel header={<Subheading roomInfo={room[0].rom} />}>
+      <Panel bsStyle={room.active ? 'primary' : 'default'} header={header}>
         {people}
       </Panel>
     </Col>
@@ -26,6 +20,7 @@ const Section = ({ room }) => {
 
 Section.propTypes = {
   room: PropTypes.arrayOf(PersonProp),
+  header: PropTypes.node,
 };
 
 export default Section;

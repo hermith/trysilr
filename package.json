@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --progress --colors",
     "watch": "webpack --progress --colors --watch",
-    "build": "webpack  --progress --colors -p --config ./webpack.prod.config.js && cp src/index.html dist/index.html",
+    "build": "webpack  --progress --colors -p --config ./webpack.prod.config.js && cp src/index.html dist/index.html && sed -i 's,../../build/bundle.js,bundle-min.js,g' dist/index.html",
     "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,10 +18,13 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/hermith/trysilr#readme",
   "dependencies": {
+    "lodash": "^4.17.2",
     "react": "^15.4.1",
+    "react-addons-css-transition-group": "^15.4.1",
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.1",
-    "lodash": "^4.17.2"
+    "react-loading": "0.0.9",
+    "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",

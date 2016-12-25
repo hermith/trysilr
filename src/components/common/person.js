@@ -1,5 +1,5 @@
 import React from 'react';
-import { PersonProp } from '../objectDefinitions';
+import { PersonProp } from '../../objectDefinitions';
 
 const Person = ({ person }) => (
   <div className={person.active}>

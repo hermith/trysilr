@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { FormControl, FormGroup, Button, Navbar, Glyphicon, ButtonGroup } from 'react-bootstrap';
 
-const Header = ({ onClicks, state: { activeButton } }) => (
+const Header = ({ onClicks, onSearch, state: { activeButton } }) => (
   <Navbar className="header">
     <Navbar.Header>
       <Navbar.Brand>
@@ -12,7 +12,10 @@ const Header = ({ onClicks, state: { activeButton } }) => (
     <Navbar.Collapse>
       <Navbar.Form pullLeft>
         <FormGroup>
-          <FormControl type="text" placeholder="Hvem er du?" className="searchWhois" />
+          <FormControl
+            onSelect={e => onSearch('search', e.currentTarget.value)}
+            type="text" placeholder="Hvem er du?" className="searchWhois"
+          />
           {' '}
           <ButtonGroup>
             <Button active={activeButton === 0} onClick={() => onClicks(0)}>
@@ -33,6 +36,7 @@ const Header = ({ onClicks, state: { activeButton } }) => (
 
 Header.propTypes = {
   onClicks: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
   state: PropTypes.shape({
     activeButton: PropTypes.number.isRequired,
   }).isRequired,

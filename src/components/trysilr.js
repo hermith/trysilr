@@ -1,21 +1,41 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
-import people from '../paameldinger.json';
-import Rooms from './rooms';
-import Search from './header/header';
-
-const byRoom = _.values(_.groupBy(people, 'rom.navn'));
-const byBus = _.values(_.groupBy(people, 'transport'));
-const byActivity = _.values(_.groupBy(people, 'aktivitetsdeltagelse'));
+import { Col, Alert } from 'react-bootstrap';
+import 'whatwg-fetch';
+import Rooms from './sections/rooms';
+import Bus from './sections/busTravel';
+import Activity from './sections/activity';
+import Header from './header/header';
+import Spinner from './utils/spinner';
 
 class Trysilr extends Component {
   constructor() {
     super();
     this.state = {
+      loading: true,
+      error: false,
+      data: {},
       activeButton: 0,
+      search: '',
     };
 
     this.headerButtonsClicked = this.headerButtonsClicked.bind(this);
+    this.updateState = this.updateState.bind(this);
+
+    fetch('/paameldinger.json')
+    .then(response => response.json())
+    .then((json) => {
+      this.updateState('data', json);
+      this.updateState('loading', false);
+    }).catch(() => {
+      this.updateState('error', true);
+    });
+  }
+
+  updateState(key, value) {
+    this.setState(old => ({
+      ...old,
+      [key]: value,
+    }));
   }
 
   headerButtonsClicked(id) {
@@ -26,22 +46,31 @@ class Trysilr extends Component {
   }
 
   render() {
-    const selection = () => {
+    let innhold;
+    if (this.state.error) {
+      innhold = <Col xs={12}> <Alert bsStyle="danger">Feil! Klarte ikke å laste data.</Alert></Col>;
+    } else if (this.state.loading) {
+      innhold = <Spinner />;
+    } else {
       switch (this.state.activeButton) {
         case 0:
-          return byRoom;
+          innhold = <Rooms data={this.state.data} search={this.state.search} />;
+          break;
         case 1:
-          return byBus;
+          innhold = <Bus data={this.state.data} search={this.state.search} />;
+          break;
         case 2:
-          return byActivity;
+          innhold = <Activity data={this.state.data} search={this.state.search} />;
+          break;
         default:
-          return [];
+          innhold = <Col xs={12}> <Alert bsStyle="danger">Feil! Har du bomma på knappen?</Alert></Col>;
       }
-    };
+    }
+
     return (
       <div>
-        <Search state={this.state} onClicks={this.headerButtonsClicked} />
-        <Rooms rooms={selection()} />
+        <Header state={this.state} onClicks={this.headerButtonsClicked} onSearch={this.updateState} />
+        {innhold}
       </div>
     );
   }
