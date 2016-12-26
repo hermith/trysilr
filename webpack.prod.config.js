@@ -4,7 +4,7 @@ module.exports = {
   entry: ['whatwg-fetch', './src/app.js'],
   output: {
     path: __dirname,
-    filename: 'dist/bundle-min.js'
+    filename: 'dist/bundle-min.js',
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -25,11 +25,11 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['es2015', 'react'],
-          plugins: ['transform-object-rest-spread']
-        }
+          plugins: ['transform-object-rest-spread'],
+        },
       },
       { test: /\.css$/, loader: 'style!css' },
-      { test: /\.svg/, loader: 'svg-url-loader' }
-    ]
-  }
+      { test: /\.svg/, loader: 'svg-url-loader' },
+    ],
+  },
 };

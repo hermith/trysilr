@@ -10,6 +10,14 @@ body {
   margin: 0;
 }
 
+.navbar-brand img {
+  display: inline;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  margin: -8px 0 0;
+}
+
 .centerBlock {
   display: table;
   margin: auto;

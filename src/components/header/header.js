@@ -5,7 +5,8 @@ const Header = ({ onClicks, onSearch, state: { activeButton } }) => (
   <Navbar className="header">
     <Navbar.Header>
       <Navbar.Brand>
-        <a>Trysilr</a>
+        <img src="./img/logo.png" alt="Trysilr logo" />
+        Trysilr
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
