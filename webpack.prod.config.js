@@ -9,6 +9,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
+        API_URL: JSON.stringify('/api/proxy'),
         NODE_ENV: JSON.stringify('production'),
       },
     }),

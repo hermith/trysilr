@@ -1,9 +1,19 @@
+const webpack = require('webpack');
+
 module.exports = {
   entry: ['whatwg-fetch', './src/app.js'],
   output: {
     path: __dirname,
     filename: 'build/bundle.js',
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        API_URL: JSON.stringify('/trysilr/paameldinger.json'),
+        NODE_ENV: JSON.stringify('dev'),
+      },
+    }),
+  ],
   devtool: 'eval-source-map',
   module: {
     loaders: [

@@ -24,7 +24,7 @@ class Trysilr extends Component {
     this.updateState = this.updateState.bind(this);
     this.debouncedUpdateState = debounce(200, this.updateState);
 
-    fetch('/trysilr/paameldinger.json')
+    fetch(process.env.API_URL)
     .then(response => response.json())
     .then((json) => {
       this.updateState('data', json);
