@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 /* eslint no-param-reassign: 0 */
-export default (array, search) => {
+export const sortAndHighlightUser = (array, search) => {
   let hasSorted = false;
   const removed = _.remove(array, (room) => {
     for (let i = 0; i < room.length; i += 1) {
@@ -23,4 +23,10 @@ export const findAndPutFirst = (array, name) => {
   const removed = _.remove(array, person => `${person.fornavn} ${person.etternavn}`.toLowerCase().includes(name));
   array.unshift(...removed);
   return !!removed;
+};
+
+export const setRoomId = (array) => {
+  array.forEach((person) => {
+    person.rom.identifikasjon = `${person.rom.navn} ${person.rom.lokasjon}`;
+  });
 };

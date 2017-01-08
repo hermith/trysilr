@@ -1,10 +1,11 @@
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   entry: ['whatwg-fetch', './src/app.js'],
   output: {
-    path: __dirname,
-    filename: 'dist/bundle-min.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle-min.js',
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -30,7 +31,13 @@ module.exports = {
         },
       },
       { test: /\.css$/, loader: 'style!css' },
-      { test: /\.svg/, loader: 'svg-url-loader' },
+      {
+        test: /\.(jpg|png)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[hash].[ext]',
+        },
+      },
     ],
   },
 };

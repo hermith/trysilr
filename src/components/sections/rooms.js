@@ -5,7 +5,7 @@ import _ from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Section from '../section';
 import { PersonProp, RoomInfoProp } from '../../objectDefinitions';
-import filterToStart from '../../other/filtering';
+import { sortAndHighlightUser as filterToStart } from '../../other/filtering';
 
 const Subheading = ({ roomInfo }) => <span>{roomInfo.navn} ({roomInfo.lokasjon})</span>;
 
@@ -15,7 +15,7 @@ Subheading.propTypes = {
 
 const Rooms = ({ data, search }) => {
   const searchValue = search.toLowerCase();
-  const byRoom = _.values(_.groupBy(data, 'rom.navn', 'rom.lokasjon'));
+  const byRoom = _.values(_.groupBy(data, 'rom.identifikasjon'));
   let searchWarning;
 
   if (searchValue) {
@@ -29,10 +29,10 @@ const Rooms = ({ data, search }) => {
   }
 
   const allRooms = [];
-  byRoom.forEach((room) => {
+  byRoom.forEach((roomGroup) => {
     allRooms.push(<Section
-      key={room[0].rom.navn} room={room}
-      header={<Subheading roomInfo={room[0].rom} />}
+      key={roomGroup[0].rom.identifikasjon} room={roomGroup}
+      header={<Subheading roomInfo={roomGroup[0].rom} />}
       search={searchValue}
     />);
   });

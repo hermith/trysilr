@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
 import { FormControl, FormGroup, Button, Navbar, Glyphicon, ButtonGroup } from 'react-bootstrap';
+import logoImg from '../../img/logo.png';
 
 const Header = ({ onClicks, onSearch, state: { activeButton } }) => (
   <Navbar className="header">
     <Navbar.Header>
       <Navbar.Brand>
-        <img src="./img/logo.png" alt="Trysilr logo" />
+        <img src={logoImg} alt="Trysilr logo" />
         Trysilr
       </Navbar.Brand>
       <Navbar.Toggle />

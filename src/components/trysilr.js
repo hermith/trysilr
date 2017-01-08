@@ -7,6 +7,7 @@ import Bus from './sections/busTravel';
 import Activity from './sections/activity';
 import Header from './header/header';
 import Spinner from './utils/spinner';
+import { setRoomId } from '../other/filtering';
 
 class Trysilr extends Component {
 
@@ -27,6 +28,7 @@ class Trysilr extends Component {
     fetch(process.env.API_URL)
     .then(response => response.json())
     .then((json) => {
+      setRoomId(json);
       this.updateState('data', json);
       this.updateState('loading', false);
     }).catch(() => {
@@ -72,6 +74,7 @@ class Trysilr extends Component {
 
     return (
       <div>
+        <div className="blurredBackground" />
         <Header state={this.state} onClicks={this.headerButtonsClicked} onSearch={this.debouncedUpdateState} />
         {innhold}
       </div>

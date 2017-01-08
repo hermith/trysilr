@@ -5,7 +5,7 @@ import _ from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Section from '../section';
 import { PersonProp } from '../../objectDefinitions';
-import filterToStart from '../../other/filtering';
+import { sortAndHighlightUser as filterToStart } from '../../other/filtering';
 
 const Subheading = ({ bus }) => {
   const toBusText = (busValue) => {

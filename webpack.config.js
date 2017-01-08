@@ -1,9 +1,10 @@
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   entry: ['whatwg-fetch', './src/app.js'],
   output: {
-    path: __dirname,
+    path: path.resolve(__dirname, 'build'),
     filename: 'build/bundle.js',
   },
   plugins: [
@@ -28,6 +29,13 @@ module.exports = {
         },
       },
       { test: /\.css$/, loader: 'style!css' },
+      {
+        test: /\.(jpg|png)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[hash].[ext]',
+        },
+      },
     ],
   },
 };
